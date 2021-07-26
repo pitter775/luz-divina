@@ -1,0 +1,27 @@
+-- MySQL Workbench Synchronization
+-- Generated: 2020-12-10 18:40
+-- Model: New Model
+-- Version: 1.0
+-- Project: Name of the project
+-- Author: pitte
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+ALTER TABLE `cdhu`.`andamentos` 
+ADD COLUMN `servicos_id` INT(11) NOT NULL AFTER `users_id`,
+ADD INDEX `fk_andamentos_servicos1_idx` (`servicos_id` ASC) ;
+;
+
+ALTER TABLE `cdhu`.`andamentos` 
+ADD CONSTRAINT `fk_andamentos_servicos1`
+  FOREIGN KEY (`servicos_id`)
+  REFERENCES `cdhu`.`servicos` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
